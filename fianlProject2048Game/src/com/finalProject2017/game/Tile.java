@@ -32,7 +32,7 @@ public class Tile
 	
 	private void drawImage()
 	{
-		Graphics2D g = (Graphics)tileImage.getGraphics();
+		Graphics2D g = (Graphics2D)tileImage.getGraphics();
 		if(value == 2)
 		{
 			background = new Color(0xe9e9e9);
@@ -111,6 +111,11 @@ public class Tile
 			font = Game.main;
 		}
 		g.setFont(font);
+		
+		int drawX = WIDTH /2 - DrawUtils.getMessageWidth("" + value, font, g) / 2;
+		int drawY = HEIGHT /2 + DrawUtils.getMessageHeight("" + value, font, g) /2;
+		g.drawString("" + value, drawX, drawY);
+		g.dispose();
 	}
 	
 	
