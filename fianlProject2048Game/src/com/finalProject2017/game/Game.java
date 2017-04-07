@@ -34,7 +34,12 @@ public class Game extends JPanel implements KeyListener, Runnable
 	
 	public void update()
 	{
+		if(Keyboard.pressed[KeyEvent.VK_RIGHT])
+			System.out.println("Hit Right");
+		if(Keyboard.pressed[KeyEvent.VK_LEFT])
+			System.out.println("Hit Left");
 		
+		Keyboard.update();
 	}
 	
 	public void render()
@@ -127,13 +132,13 @@ public class Game extends JPanel implements KeyListener, Runnable
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-		
+		Keyboard.keyPressed(e);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) 
 	{
-		
+		Keyboard.keyReleased(e);
 	}
 
 	@Override
