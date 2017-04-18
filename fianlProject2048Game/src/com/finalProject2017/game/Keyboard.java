@@ -4,8 +4,8 @@ import java.awt.event.KeyEvent;
 
 public class Keyboard 
 {
-	public static boolean[] pressed = new boolean [256];
-	public static boolean[] prev = new boolean [256];
+	public static boolean[] pressed = new boolean [256];	// Keeps track of keys pressed
+	public static boolean[] prev = new boolean [256];	// Tracks the previous keys pressed
 	
 	private Keyboard()
 	{
