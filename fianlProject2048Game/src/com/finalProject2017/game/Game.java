@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JPanel;
 
 public class Game extends JPanel implements KeyListener, Runnable
@@ -16,7 +15,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 400;
 	public static final int HEIGHT = 630;
-	public static final Font main = new Font("Bebas Neue Regular", Font.PLAIN, 28);
+	public static final Font main = new Font("Times New Roman", Font.PLAIN, 28);
 	private Thread game;
 	private boolean running;
 	
@@ -29,12 +28,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 	
 	public void update()
 	{
-		if(Keyboard.pressed[KeyEvent.VK_RIGHT])
-			System.out.println("Hit Right");
-		if(Keyboard.pressed[KeyEvent.VK_LEFT])
-			System.out.println("Hit Left");
 		
-		Keyboard.update();
 	}
 	
 	public void render()
@@ -42,7 +36,6 @@ public class Game extends JPanel implements KeyListener, Runnable
 		
 	}
 	
-	@Override
 	public void run() 
 	{	
 		while(running)
@@ -66,19 +59,21 @@ public class Game extends JPanel implements KeyListener, Runnable
 		System.exit(0);
 	}
 
-	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-		Keyboard.keyPressed(e);
+		int keyCode = e.getKeyCode();
+		
+		if(keyCode == KeyEvent.VK_LEFT)
+			System.out.println("Left");
+		if(keyCode == KeyEvent.VK_RIGHT)
+			System.out.println("Right");
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) 
 	{
-		Keyboard.keyReleased(e);
+		
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) 
 	{
 
