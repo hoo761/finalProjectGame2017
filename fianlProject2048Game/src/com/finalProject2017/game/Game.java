@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Ellipse2D;
@@ -22,12 +24,19 @@ public class Game extends JPanel implements KeyListener, Runnable
 	private Thread game;
 	private boolean running;
 	
+	BufferedImage backBuffer;
+	Insets insets;
+	
 	public Game()
 	{
 		setFocusable(true);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		addKeyListener(this);
 		setBackground(Color.BLUE);
+		
+		insets = getInsets();
+		backBuffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		
 	}
 	
 	public void update()
@@ -45,12 +54,20 @@ public class Game extends JPanel implements KeyListener, Runnable
 		while(running)
 		{
 			update();
+			draw();
 		}	
 	}
 	
-	public void paintComponent(Graphics g) 
+	public void draw() 
 	{
-		Graphics2D g2d = (Graphics2D) g;
+		Graphics g =  getGraphics();
+		
+		Graphics grid = backBuffer.getGraphics();
+		
+		grid.setColor(Color.BLACK);
+		grid.fillRect(0, 0, 5, 400);
+		
+		g.drawImag
 		
 	}
 	
@@ -90,3 +107,6 @@ public class Game extends JPanel implements KeyListener, Runnable
 	}
 	
 }
+
+
+// http://stackoverflow.com/questions/10966821/appropriate-way-to-draw-to-a-jpanel-for-2d-game-development
