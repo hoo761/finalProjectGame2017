@@ -21,15 +21,19 @@ public class Game extends JPanel implements KeyListener, Runnable
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 900;
 	public static final Font main = new Font("Times New Roman", Font.PLAIN, 28);
+	
 	private Thread game;
 	private boolean running;
+	private boolean shouldRender;
+	private boolean shouldUpdate;
+	
 	
 	public Game()
 	{
 		setFocusable(true);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		addKeyListener(this);
-		setBackground(Color.BLUE);		
+		setBackground(Draw.backgroundColor);		
 	}
 	
 	public void update()
@@ -39,7 +43,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 	
 	public void render()
 	{
-		
+
 	}
 	
 	public void run() 
@@ -51,10 +55,6 @@ public class Game extends JPanel implements KeyListener, Runnable
 		}	
 	}
 	
-	public void draw() 
-	{
-		Graphics g =  getGraphics();		
-	}
 	
 	public synchronized void start()
 	{
