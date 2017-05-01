@@ -24,19 +24,12 @@ public class Game extends JPanel implements KeyListener, Runnable
 	private Thread game;
 	private boolean running;
 	
-	BufferedImage backBuffer;
-	Insets insets;
-	
 	public Game()
 	{
 		setFocusable(true);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		addKeyListener(this);
-		setBackground(Color.BLUE);
-		
-		insets = getInsets();
-		backBuffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		
+		setBackground(Color.BLUE);		
 	}
 	
 	public void update()
@@ -60,15 +53,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 	
 	public void draw() 
 	{
-		Graphics g =  getGraphics();
-		
-		Graphics grid = backBuffer.getGraphics();
-		
-		grid.setColor(Color.BLACK);
-		grid.fillRect(0, 0, 5, 400);
-		
-		g.drawImag
-		
+		Graphics g =  getGraphics();		
 	}
 	
 	public synchronized void start()
