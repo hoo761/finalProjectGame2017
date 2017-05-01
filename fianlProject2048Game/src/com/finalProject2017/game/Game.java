@@ -18,22 +18,24 @@ public class Game extends JPanel implements KeyListener, Runnable
 {
 
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 900;
+	public static final int WINDOW_WIDTH = 800;
+	public static final int WINDOW_HEIGHT = 900;
 	public static final Font main = new Font("Times New Roman", Font.PLAIN, 28);
 	
 	private Thread game;
+	private BufferedImage image = new BufferedImage(WINDOW_WIDTH, WINDOW_HEIGHT, BufferedImage.TYPE_INT_RGB);;
 	private boolean running;
 	private boolean shouldRender;
-	private boolean shouldUpdate;
-	
+	private Tiles tile;
+	private GameBoard board;
 	
 	public Game()
 	{
 		setFocusable(true);
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 		addKeyListener(this);
-		setBackground(Draw.backgroundColor);		
+		
+		board = new GameBoard(125, 330);
 	}
 	
 	public void update()
@@ -43,7 +45,16 @@ public class Game extends JPanel implements KeyListener, Runnable
 	
 	public void render()
 	{
-
+		Graphics2D g = (Graphics2D) image.getGraphics();
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		board.render(g);
+		g.dispose();
+		
+		Graphics2D g2d = (Graphics2D) getGraphics();
+		g2d.drawImage(image, 0, 0, null);
+		g2d.dispose();
+		
 	}
 	
 	public void run() 
@@ -51,7 +62,10 @@ public class Game extends JPanel implements KeyListener, Runnable
 		while(running)
 		{
 			update();
-			draw();
+			shouldRender = true;
+			
+			if(shouldRender)
+				render();
 		}	
 	}
 	
@@ -76,9 +90,13 @@ public class Game extends JPanel implements KeyListener, Runnable
 		int keyCode = e.getKeyCode();
 		
 		if(keyCode == KeyEvent.VK_LEFT)
+		{
 			System.out.println("Left");
+		}	
 		if(keyCode == KeyEvent.VK_RIGHT)
+		{
 			System.out.println("Right");
+		}
 	}
 
 	public void keyReleased(KeyEvent e) 
