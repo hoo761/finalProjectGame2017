@@ -38,7 +38,7 @@ public class GameBoard
 		
 		g.setColor(Color.BLUE);
 		
-		for(int row = 0; row < ROWS; row++)
+		for(int row = 0; row < ROWS; row++)			// Creates all the spaces for the tiles
 		{
 			for(int col = 0; col < COLS; col ++)
 			{
@@ -53,8 +53,6 @@ public class GameBoard
 	{
 		Graphics2D g2d = (Graphics2D) finalBoard.getGraphics();
 		g2d.drawImage(gameBoard, 0, 0, null);
-		
-		//Draw Tiles
 		
 		g.drawImage(finalBoard, x, y, null);
 		g2d.dispose();
