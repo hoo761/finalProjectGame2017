@@ -36,6 +36,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 		addKeyListener(this);
 		
 		board = new GameBoard(125, 330);
+		tile = new Tiles(16, 40, 40);
 	}
 	
 	public void update()

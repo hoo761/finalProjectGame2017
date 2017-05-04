@@ -24,8 +24,14 @@ public class Tiles
 		this.value = value;
 		this.x = x;
 		this.y = y;
+		font = Game.main;
 		tileImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		drawTile();
+	}
+	
+	public void render(Graphics2D g)
+	{
+		g.drawImage(tileImage, x, y, null);
 	}
 	
 	private void drawTile()
@@ -98,6 +104,8 @@ public class Tiles
 		
 		g.setColor(tileColor);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		g.setColor(textColor);
 		
 		if(value <= 64)
 		{
