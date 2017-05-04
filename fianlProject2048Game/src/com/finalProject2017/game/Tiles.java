@@ -24,7 +24,7 @@ public class Tiles
 		this.value = value;
 		this.x = x;
 		this.y = y;
-		font = Game.main;
+		font = new Font("", Font.BOLD, 28);
 		tileImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		drawTile();
 	}
@@ -113,7 +113,7 @@ public class Tiles
 		}
 		g.setFont(font);
 		
-		g.drawString("" + value, 40, 40);
+		g.drawString("" + value, WIDTH / 2 - 10, 50);
 		g.dispose();
 	}
 }

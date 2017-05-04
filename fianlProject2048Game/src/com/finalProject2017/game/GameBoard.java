@@ -48,13 +48,13 @@ public class GameBoard
 			}
 		}
 		
-		for(int row = 0; row < ROWS; row++)			// Creates all the spaces for the tiles
+		for(int row = 0; row < ROWS; row++)			// Adds all the tiles to the game board
 		{
 			for(int col = 0; col < COLS; col ++)
 			{
 				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
 				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
-				new Tiles(2, x, y).render(g);
+				new Tiles(4, x, y).render(g);
 			}
 		}
 	}
