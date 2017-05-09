@@ -95,13 +95,12 @@ public class Tiles
 		}	
 		else
 		{
-<<<<<<< HEAD
+
 			tileColor = Color.BLACK;
 			textColor = Color.BLACK;
-=======
+
 			tileColor = new Color(204,204,204);
 			textColor = Color.WHITE;
->>>>>>> GameGraphics
 		}
 		
 		g.setColor(new Color(0, 0, 0));
@@ -118,11 +117,8 @@ public class Tiles
 		}
 		g.setFont(font);
 		
-<<<<<<< HEAD
 		g.drawString("" + value, WIDTH / 2 - 10, 50);
-=======
 		g.drawString("" + value, WIDTH / 2 - 10, HEIGHT / 2 + 15);
->>>>>>> GameGraphics
 		g.dispose();
 	}
 }
