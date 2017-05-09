@@ -1,6 +1,7 @@
 package com.finalProject2017.game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -18,6 +19,7 @@ public class GameBoard
 	
 	private int x;
 	private int y;
+	
 	
 	public static boolean spotsTaken[][] = new boolean[4][4];
 	public static int tileNums[][] = new int [4][4];
@@ -57,6 +59,7 @@ public class GameBoard
 		Graphics2D g = (Graphics2D) gameBoard.getGraphics();
 		g.setColor(new Color(50, 50, 50));
 		g.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
+		
 		
 		g.setColor(Color.BLUE);
 		
