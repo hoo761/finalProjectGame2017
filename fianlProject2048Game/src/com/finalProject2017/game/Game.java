@@ -18,7 +18,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 {
 
 	private static final long serialVersionUID = 1L;
-	public static final int WINDOW_WIDTH = 800;
+	public static final int WINDOW_WIDTH = 640;
 	public static final int WINDOW_HEIGHT = 900;
 	public static final Font main = new Font("Times New Roman", Font.PLAIN, 28);
 	
@@ -35,7 +35,12 @@ public class Game extends JPanel implements KeyListener, Runnable
 		setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 		addKeyListener(this);
 		
+<<<<<<< HEAD
 		board = new GameBoard(125, 330);
+=======
+		board = new GameBoard((WINDOW_WIDTH / 2) - 265, 330);
+		tile = new Tiles(16, 40, 40);
+>>>>>>> GameGraphics
 	}
 	
 	public void update()

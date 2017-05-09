@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 public class Tiles 
 {
 	
-	public static final int WIDTH = 125;
-	public static final int HEIGHT = 125;
+	public static final int WIDTH = 120;
+	public static final int HEIGHT = 120;
 	
 	private int value;
 	private Color tileColor;
@@ -40,63 +40,68 @@ public class Tiles
 		
 		if(value == 2)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(204,204,204);
 			textColor = Color.RED;
 		}
 		else if(value == 4)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 8)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 16)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 32)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 64)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 128)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 256)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 512)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 1024)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}
 		else if(value == 2048)
 		{
-			tileColor = Color.BLUE;
+			tileColor = new Color(239,227,189);
 			textColor = Color.RED;
 		}	
 		else
 		{
+<<<<<<< HEAD
 			tileColor = Color.BLACK;
 			textColor = Color.BLACK;
+=======
+			tileColor = new Color(204,204,204);
+			textColor = Color.WHITE;
+>>>>>>> GameGraphics
 		}
 		
 		g.setColor(new Color(0, 0, 0));
@@ -113,7 +118,11 @@ public class Tiles
 		}
 		g.setFont(font);
 		
+<<<<<<< HEAD
 		g.drawString("" + value, WIDTH / 2 - 10, 50);
+=======
+		g.drawString("" + value, WIDTH / 2 - 10, HEIGHT / 2 + 15);
+>>>>>>> GameGraphics
 		g.dispose();
 	}
 }
