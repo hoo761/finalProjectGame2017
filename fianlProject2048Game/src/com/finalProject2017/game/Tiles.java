@@ -96,7 +96,7 @@ public class Tiles
 		else
 		{
 			tileColor = Color.BLACK;
-			textColor = Color.WHITE;
+			textColor = Color.BLACK;
 		}
 		
 		g.setColor(new Color(0, 0, 0));
