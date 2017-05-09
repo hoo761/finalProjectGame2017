@@ -95,10 +95,6 @@ public class Tiles
 		}	
 		else
 		{
-
-			tileColor = Color.BLACK;
-			textColor = Color.BLACK;
-
 			tileColor = new Color(204,204,204);
 			textColor = Color.WHITE;
 		}
@@ -117,7 +113,6 @@ public class Tiles
 		}
 		g.setFont(font);
 		
-		g.drawString("" + value, WIDTH / 2 - 10, 50);
 		g.drawString("" + value, WIDTH / 2 - 10, HEIGHT / 2 + 15);
 		g.dispose();
 	}

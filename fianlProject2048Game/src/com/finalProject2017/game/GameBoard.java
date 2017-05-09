@@ -55,7 +55,7 @@ public class GameBoard
 	private void createBoardImage()
 	{
 		Graphics2D g = (Graphics2D) gameBoard.getGraphics();
-		g.setColor(Color.WHITE);
+		g.setColor(new Color(50, 50, 50));
 		g.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 		
 		g.setColor(Color.BLUE);

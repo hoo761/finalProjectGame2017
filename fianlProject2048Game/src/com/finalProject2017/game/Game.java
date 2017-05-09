@@ -35,12 +35,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 		setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 		addKeyListener(this);
 		
-
-		board = new GameBoard(125, 330);
-
 		board = new GameBoard((WINDOW_WIDTH / 2) - 265, 330);
-		tile = new Tiles(16, 40, 40);
-
 	}
 	
 	public void update()
@@ -51,7 +46,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 	public void render()
 	{
 		Graphics2D g = (Graphics2D) image.getGraphics();
-		g.setColor(Color.LIGHT_GRAY);
+		g.setColor(new Color(250, 250, 250));
 		g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 		board.render(g);
 		g.dispose();
