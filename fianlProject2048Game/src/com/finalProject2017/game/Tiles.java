@@ -41,62 +41,62 @@ public class Tiles
 		if(value == 2)
 		{
 			tileColor = new Color(204,204,204);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 4)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 8)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 16)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 32)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 64)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 128)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 256)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 512)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 1024)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}
 		else if(value == 2048)
 		{
 			tileColor = new Color(239,227,189);
-			textColor = Color.RED;
+			textColor = Color.BLACK;
 		}	
 		else
 		{
 			tileColor = new Color(204,204,204);
-			textColor = Color.WHITE;
+			textColor = Color.BLACK;
 		}
 		
 		g.setColor(new Color(0, 0, 0));
@@ -109,7 +109,7 @@ public class Tiles
 		
 		if(value <= 64)
 		{
-			font = Game.main.deriveFont(36f);
+			font = font.deriveFont(36f);
 		}
 		g.setFont(font);
 		
