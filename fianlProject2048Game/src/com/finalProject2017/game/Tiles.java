@@ -8,17 +8,17 @@ import java.awt.image.BufferedImage;
 public class Tiles 
 {
 	
-	public static final int WIDTH = 100;
-	public static final int HEIGHT = 100;
+	public static final int WIDTH = 125;
+	public static final int HEIGHT = 125;
 	
-	private int value;
+	public int value;
 	private Color tileColor;
 	private Color textColor;
 	private Font font;
 	private Font trippleDigit;
 	private Font quadDigit;
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 	private BufferedImage tileImage;
 	
 	

@@ -36,6 +36,14 @@ public class GameBoard
 		createBoardImage();
 		putRandomTile();
 		putRandomTile();
+		
+		for(int row = 0; row < ROWS; row++)			// Adds all the tiles to the game board
+		{
+			for(int col = 0; col < COLS; col ++)
+			{
+				System.out.print(tileNums[col][row] + " ,");
+			}
+		}
 	}
 	
 	private void createBoardImage()
@@ -83,6 +91,35 @@ public class GameBoard
 		
 		g.drawImage(finalBoard, x, y, null);
 		g2d.dispose();
+	}
+	
+	
+	public void moveTilesUp(Graphics2D g)
+	{
+		int listSpot = 0;
+		
+		for(int row = 0; row < ROWS; row++)
+		{
+			for(int col = 0; col < COLS; col ++)
+			{
+				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
+				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
+				
+				if(row != 0)
+				{
+					if(tileNums[row][col] == tileNums[row + 1][col]) // Checks if the tile above the other tile are equal
+					{
+						tileGrid.get(listSpot - 4).value = tileNums[row][col] + tileNums[row + 1][col]; // Sets the value of the current Tile object's value to the sum of the two tiles
+						tileNums[row + 1][col] = tileNums[row][col]; // Sets value on the 2Darray
+						spotsTaken[row][col] = false; // Sets the spot of the tile below to be not taken
+						spotsTaken[row + 1][col] = true; // Sets the spot of the new tile to taken
+						tileGrid.remove(listSpot); //Removes the old tile
+					}
+				}
+				tileGrid.get(listSpot).render(g);
+				listSpot++;
+			}
+		}
 	}
 	
 	public void putRandomTile()
@@ -146,6 +183,5 @@ public class GameBoard
 				}
 			}
 		}
-	}
-	
+	}	
 }
