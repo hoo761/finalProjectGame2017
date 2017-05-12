@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 public class Tiles 
 {
 	
-	public static final int WIDTH = 120;
-	public static final int HEIGHT = 120;
+	public static final int WIDTH = 100;
+	public static final int HEIGHT = 100;
 	
 	private int value;
 	private Color tileColor;
