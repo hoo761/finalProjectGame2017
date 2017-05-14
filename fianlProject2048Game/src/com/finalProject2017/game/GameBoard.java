@@ -15,9 +15,11 @@ public class GameBoard
 	public static final int BOARD_HEIGHT = (COLS + 1) * SPACING + COLS * Tiles.WIDTH;
 	public static final int BOARD_WIDTH = (ROWS + 1) * SPACING + ROWS * Tiles.WIDTH;
 	
+	
 	private BufferedImage gameBoard;
 	private BufferedImage finalBoard;
 	
+		
 	private int x;
 	private int y;
 	
@@ -30,6 +32,7 @@ public class GameBoard
 	{
 		this.x = x;
 		this.y = y;
+		
 		
 		gameBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		finalBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -51,9 +54,6 @@ public class GameBoard
 		Graphics2D g = (Graphics2D) gameBoard.getGraphics();
 		g.setColor(new Color(50, 50, 50));
 		g.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
-		
-		
-		g.setColor(Color.BLUE);
 		
 		for(int row = 0; row < ROWS; row++)			// Creates all the spaces for the tiles
 		{
