@@ -57,6 +57,12 @@ public class Game extends JPanel implements KeyListener, Runnable
 		
 	}
 	
+	public Graphics2D getGameGraphics()
+	{
+		Graphics2D g = (Graphics2D) image.getGraphics();
+		return g;
+	}
+	
 	public void run() 
 	{	
 		while(running)
@@ -93,9 +99,9 @@ public class Game extends JPanel implements KeyListener, Runnable
 		{
 			System.out.println("Left");
 		}	
-		if(keyCode == KeyEvent.VK_RIGHT)
+		if(keyCode == KeyEvent.VK_UP)
 		{
-			System.out.println("Right");
+			GameBoard.moveTilesUp(getGameGraphics());
 		}
 	}
 

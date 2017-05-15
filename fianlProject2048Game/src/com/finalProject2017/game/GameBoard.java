@@ -94,7 +94,7 @@ public class GameBoard
 	}
 	
 	
-	public void moveTilesUp(Graphics2D g)
+	public static void moveTilesUp(Graphics2D g)
 	{
 		int listSpot = 0;
 		
@@ -113,7 +113,7 @@ public class GameBoard
 						tileNums[row + 1][col] = tileNums[row][col]; // Sets value on the 2Darray
 						spotsTaken[row][col] = false; // Sets the spot of the tile below to be not taken
 						spotsTaken[row + 1][col] = true; // Sets the spot of the new tile to taken
-						tileGrid.remove(listSpot); //Removes the old tile
+						tileGrid.remove(listSpot - 1); //Removes the old tile
 					}
 				}
 				tileGrid.get(listSpot).render(g);
@@ -127,11 +127,18 @@ public class GameBoard
 		int randomCol = getRandomNumSpot();
 		int randomRow = getRandomNumSpot();
 		
-		tileNums[randomCol][randomRow] = getRandomNumTileNum();
-		setTakenSpots();
-		
-		Graphics2D g = (Graphics2D) gameBoard.getGraphics();
-		new Tiles(tileNums[randomCol][randomRow], getXSpot(randomCol), getYSpot(randomRow)).render(g);
+		if(spotsTaken[randomCol][randomRow])
+		{
+			putRandomTile();
+		}
+		else
+		{
+			tileNums[randomCol][randomRow] = getRandomNumTileNum();
+			setTakenSpots();
+			
+			Graphics2D g = (Graphics2D) gameBoard.getGraphics();
+			new Tiles(tileNums[randomCol][randomRow], getXSpot(randomCol), getYSpot(randomRow)).render(g);
+		}
 		
 	}
 	
