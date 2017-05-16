@@ -107,19 +107,44 @@ public class GameBoard
 				
 				if(row != 0)
 				{
-					if(tileNums[row][col] == tileNums[row + 1][col]) // Checks if the tile above the other tile are equal
+					if(spotsTaken[row - 1][col]) // If the tile above is tanken
 					{
-						tileGrid.get(listSpot - 4).value = tileNums[row][col] + tileNums[row + 1][col]; // Sets the value of the current Tile object's value to the sum of the two tiles
-						tileNums[row + 1][col] = tileNums[row][col]; // Sets value on the 2Darray
-						spotsTaken[row][col] = false; // Sets the spot of the tile below to be not taken
-						spotsTaken[row + 1][col] = true; // Sets the spot of the new tile to taken
-						tileGrid.remove(listSpot - 1); //Removes the old tile
+						if(tileNums[row][col] == tileNums[row - 1][col]) // Checks if the numbers are equal
+						{
+							tileNums[row - 1][col] += tileNums[row][col]; // Add two tiles together
+							tileNums[row][col] = 0;
+							spotsTaken[row][col] = false; // Set the spot below to not taken
+							tileGrid.get(listSpot - 4).value = tileNums[row -1][col]; // Change the value to the new value
+						}
+					}
+					if(!spotsTaken[row][col])
+					{
+						switch(row)
+						{
+							case 0:
+							{
+							
+							}
+							case 1:
+							{
+								
+							}
+							case 2:
+							{
+								
+							}
+							case 3:
+							{
+								
+							}
+						}
 					}
 				}
-				tileGrid.get(listSpot).render(g);
+				System.out.print(tileNums[col][row] + " ,");
 				listSpot++;
 			}
 		}
+		System.out.println();
 	}
 	
 	public void putRandomTile()
