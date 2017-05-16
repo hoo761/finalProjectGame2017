@@ -97,11 +97,11 @@ public class Game extends JPanel implements KeyListener, Runnable
 		
 		if(keyCode == KeyEvent.VK_LEFT)
 		{
-			System.out.println("Left");
+			GameBoard.moveTilesLeft(getGameGraphics());
 		}	
 		if(keyCode == KeyEvent.VK_UP)
 		{
-			GameBoard.moveTilesUp(getGameGraphics());
+			
 		}
 	}
 

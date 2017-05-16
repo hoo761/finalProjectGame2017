@@ -94,7 +94,7 @@ public class GameBoard
 	}
 	
 	
-	public static void moveTilesUp(Graphics2D g)
+	public static void moveTilesLeft(Graphics2D g)
 	{
 		int listSpot = 0;
 		
@@ -123,19 +123,20 @@ public class GameBoard
 						{
 							case 0:
 							{
-							
+								
+								break;
 							}
 							case 1:
 							{
-								
+								break;
 							}
 							case 2:
 							{
-								
+								break;
 							}
 							case 3:
 							{
-								
+								break;
 							}
 						}
 					}
