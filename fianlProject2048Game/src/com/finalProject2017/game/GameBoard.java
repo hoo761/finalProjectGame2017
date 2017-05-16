@@ -116,7 +116,9 @@ public class GameBoard
 							spotsTaken[row][col] = false; // Set the spot below to not taken
 							tileGrid.get(listSpot - 4).value = tileNums[row -1][col]; // Change the value to the new value
 						}
+						setValues(tileNums[row][col], getXSpot(col), getYSpot(row), listSpot);
 						setValues(tileNums[row - 1][col], getXSpot(col), getYSpot(row - 1), listSpot - 4);
+						tileGrid.get(listSpot).render(g);
 						tileGrid.get(listSpot - 4).render(g);
 					}
 					if(!spotsTaken[row][col])
