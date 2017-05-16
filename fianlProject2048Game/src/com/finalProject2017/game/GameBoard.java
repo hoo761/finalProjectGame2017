@@ -34,10 +34,10 @@ public class GameBoard
 		gameBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		finalBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		createBoardImage();
-		putRandomTile();
-		putRandomTile();
+		//putRandomTile();
+		//putRandomTile();
 		
-		for(int row = 0; row < ROWS; row++)			// Adds all the tiles to the game board
+		for(int row = 0; row < ROWS; row++)			// For testing
 		{
 			for(int col = 0; col < COLS; col ++)
 			{
@@ -77,11 +77,22 @@ public class GameBoard
 			{
 				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
 				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
+				
+				///
+				tileNums[0][0] = 2;
+				tileNums[0][1] = 2;
+				tileNums[1][1] = 2;
+				tileNums[1][2] = 2;
+				tileNums[0][3] = 2;
+				tileNums[1][3] = 2;
+				///
+				
 				tileGrid.add(new Tiles(tileNums[row][col], x, y));
 				tileGrid.get(listSpot).render(g);
 				listSpot++;
 			}
 		}
+		setTakenSpots();
 	}
 	
 	public void render(Graphics2D g)
@@ -100,28 +111,22 @@ public class GameBoard
 		
 		for(int row = 0; row < ROWS; row++)
 		{
-			for(int col = 0; col < COLS; col ++)
+			for(int col = 0; col < COLS; col++)
 			{
 				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
 				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
-				
-				if(row != 0)
+				//System.out.println("(" + row + ", " + col + ")");
+				if(col > 0)
 				{
-					if(spotsTaken[row - 1][col]) // If the tile above is tanken
+					if(spotsTaken[row][col - 1]) // If the tile to the left is tanken
 					{
-						if(tileNums[row][col] == tileNums[row - 1][col]) // Checks if the numbers are equal
+						if(tileNums[row][col] == tileNums[row][col - 1]) // Checks if the numbers are equal
 						{
-							tileNums[row - 1][col] += tileNums[row][col]; // Add two tiles together
-							tileNums[row][col] = 0;
-							spotsTaken[row][col] = false; // Set the spot below to not taken
-							tileGrid.get(listSpot - 4).value = tileNums[row -1][col]; // Change the value to the new value
+							
 						}
-						setValues(tileNums[row][col], getXSpot(col), getYSpot(row), listSpot);
-						setValues(tileNums[row - 1][col], getXSpot(col), getYSpot(row - 1), listSpot - 4);
-						tileGrid.get(listSpot).render(g);
-						tileGrid.get(listSpot - 4).render(g);
+						
 					}
-					if(!spotsTaken[row][col])
+					if(!spotsTaken[row][col - 1])
 					{
 						switch(row)
 						{
@@ -145,7 +150,7 @@ public class GameBoard
 						}
 					}
 				}
-				System.out.print(tileNums[col][row] + " ,");
+				//System.out.print(tileNums[col][row] + " ,");
 				listSpot++;
 			}
 		}
