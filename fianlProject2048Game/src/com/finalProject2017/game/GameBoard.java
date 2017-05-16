@@ -116,6 +116,8 @@ public class GameBoard
 							spotsTaken[row][col] = false; // Set the spot below to not taken
 							tileGrid.get(listSpot - 4).value = tileNums[row -1][col]; // Change the value to the new value
 						}
+						setValues(tileNums[row - 1][col], getXSpot(col), getYSpot(row - 1), listSpot - 4);
+						tileGrid.get(listSpot - 4).render(g);
 					}
 					if(!spotsTaken[row][col])
 					{
@@ -148,6 +150,13 @@ public class GameBoard
 		System.out.println();
 	}
 	
+	public static void setValues(int value, int x, int y, int spot)
+	{
+		tileGrid.get(spot).value = value;
+		tileGrid.get(spot).x = x;
+		tileGrid.get(spot).y = y;
+	}
+	
 	public void putRandomTile()
 	{
 		int randomCol = getRandomNumSpot();
@@ -168,12 +177,12 @@ public class GameBoard
 		
 	}
 	
-	public int getXSpot(int randomCol)
+	public static int getXSpot(int randomCol)
 	{
 		return SPACING + SPACING * randomCol + Tiles.WIDTH * randomCol;
 	}
 	
-	public int getYSpot(int randomRow)
+	public  static int getYSpot(int randomRow)
 	{
 		return SPACING + SPACING * randomRow + Tiles.WIDTH * randomRow;
 	}
