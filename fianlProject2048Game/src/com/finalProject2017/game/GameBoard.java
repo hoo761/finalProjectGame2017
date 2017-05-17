@@ -18,10 +18,15 @@ public class GameBoard
 	
 	private BufferedImage gameBoard;
 	private BufferedImage finalBoard;
+	private BufferedImage scoreCount;
 	
 		
 	private int x;
 	private int y;
+	private int score;
+	private int x_Score;
+	private int y_Score;
+	private Font scoreFont;
 	
 	
 	public static boolean spotsTaken[][] = new boolean[4][4];
@@ -32,6 +37,11 @@ public class GameBoard
 	{
 		this.x = x;
 		this.y = y;
+		score = 0;
+		x_Score = 477;
+		y_Score = 150;
+		scoreFont = new Font("", Font.BOLD, 36);
+		
 		
 		
 		gameBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -90,6 +100,8 @@ public class GameBoard
 		g2d.drawImage(gameBoard, 0, 0, null);
 		
 		g.drawImage(finalBoard, x, y, null);
+		g.setFont(scoreFont);
+		g.drawString("" + score, x_Score, y_Score);
 		g2d.dispose();
 	}
 	

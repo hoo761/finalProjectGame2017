@@ -35,6 +35,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 	private int gameName;
 	private Font gameFont;
 	private Font HS_font;
+	private Font messageFont;
 	private int score;
 	
 	public Game()
@@ -46,6 +47,7 @@ public class Game extends JPanel implements KeyListener, Runnable
 		gameName = 2048;
 		gameFont = new Font("", Font.BOLD, 100);
 		HS_font = new Font("", Font.BOLD, 36);
+		messageFont = new Font("", Font.BOLD, 24);
 		
 		board = new GameBoard((WINDOW_WIDTH / 2) - 265, 330);
 	}
@@ -67,6 +69,9 @@ public class Game extends JPanel implements KeyListener, Runnable
 		
 		g.setFont(HS_font);
 		g.drawString("SCORE", HS_X_POS, HS_Y_POS);
+		
+		g.setFont(messageFont);
+		g.drawString("PRESS 'R' TO RESTART THE GAME", 30, 250);
 		
 		
 		board.render(g);
@@ -124,6 +129,11 @@ public class Game extends JPanel implements KeyListener, Runnable
 		{
 			
 		}
+		
+		if(keyCode == KeyEvent.VK_R)
+		{
+			restart();
+		}
 	}
 
 	public void keyReleased(KeyEvent e) 
@@ -136,6 +146,11 @@ public class Game extends JPanel implements KeyListener, Runnable
 
 	}
 	
+	
+	public void restart()
+	{
+		score = 0;
+	}
 }
 
 
