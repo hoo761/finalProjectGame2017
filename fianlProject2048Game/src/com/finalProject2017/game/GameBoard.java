@@ -15,12 +15,8 @@ public class GameBoard
 	public static final int BOARD_HEIGHT = (COLS + 1) * SPACING + COLS * Tiles.WIDTH;
 	public static final int BOARD_WIDTH = (ROWS + 1) * SPACING + ROWS * Tiles.WIDTH;
 	
-<<<<<<< HEAD
-	
-	private BufferedImage gameBoard;
-=======
 	private static BufferedImage gameBoard;
->>>>>>> gameBoardGraphics
+	
 	private BufferedImage finalBoard;
 	private BufferedImage scoreCount;
 	
@@ -79,11 +75,8 @@ public class GameBoard
 		g.setColor(new Color(50, 50, 50));
 		g.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 		
-<<<<<<< HEAD
-=======
 		g.setColor(Color.BLUE);
 		
->>>>>>> gameBoardGraphics
 		for(int row = 0; row < ROWS; row++)			// Creates all the spaces for the tiles
 		{
 			for(int col = 0; col < COLS; col ++)
