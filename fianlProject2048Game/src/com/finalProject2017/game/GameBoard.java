@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+
 public class GameBoard 
 {
 	
@@ -45,20 +46,8 @@ public class GameBoard
 		
 		
 		gameBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
-		finalBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
-		
-		///
-		tileNums[0][0] = 2;
-		tileNums[0][1] = 2;
-		tileNums[1][1] = 2;
-		tileNums[1][2] = 2;
-		tileNums[0][3] = 2;
-		tileNums[1][3] = 2;
-		///
 		
 		createBoardImage();
-		//putRandomTile();
-		//putRandomTile();
 		
 		for(int row = 0; row < ROWS; row++)			// For testing
 		{
@@ -101,17 +90,29 @@ public class GameBoard
 				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
 				
 				tileGrid.add(new Tiles(tileNums[row][col], x, y));
-				tileGrid.get(listSpot).render(g);
 				listSpot++;
 			}
 		}
+		putRandomTile();
+		putRandomTile();
 		setTakenSpots();
 	}
 	
 	public void render(Graphics2D g)
 	{
+		BufferedImage finalBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = (Graphics2D) finalBoard.getGraphics();
 		g2d.drawImage(gameBoard, 0, 0, null);
+		
+		int spot = 0;
+		for (int row = 0; row < ROWS; row++) 
+		{
+			for (int col = 0; col < COLS; col++) 
+			{
+				tileGrid.get(spot).render(g2d);
+				spot++;
+			}
+		}
 		
 		g.drawImage(finalBoard, x, y, null);
 		g.setFont(scoreFont);
@@ -123,7 +124,7 @@ public class GameBoard
 	public static void moveTilesLeft()
 	{
 		int listSpot = 0;
-		
+		/*
 		for(int row = 0; row < ROWS; row++)
 		{
 			for(int col = 0; col < COLS; col++)
@@ -170,9 +171,11 @@ public class GameBoard
 					}
 				}
 				listSpot++;
-			}
-		}
+				
+			}*/
+		//}
 		System.out.println();
+		tileGrid.get(0).x += 10;
 	}
 	
 	public static void setValues(int value, int x, int y, int spot)
@@ -182,24 +185,62 @@ public class GameBoard
 		tileGrid.get(spot).y = y;
 	}
 	
-	public void putRandomTile()
+	public static void putRandomTile()
 	{
 		int randomCol = getRandomNumSpot();
 		int randomRow = getRandomNumSpot();
 		
-		if(spotsTaken[randomCol][randomRow])
+		if(spotsTaken[randomRow][randomCol])
 		{
 			putRandomTile();
 		}
 		else
 		{
-			tileNums[randomCol][randomRow] = getRandomNumTileNum();
+			tileNums[randomRow][randomCol] = getRandomNumTileNum();
 			setTakenSpots();
 			
-			Graphics2D g = (Graphics2D) gameBoard.getGraphics();
-			new Tiles(tileNums[randomCol][randomRow], getXSpot(randomCol), getYSpot(randomRow)).render(g);
+			tileGrid.get(getSpot(randomRow, randomCol)).value = tileNums[randomRow][randomCol];
 		}
 		
+	}
+	
+	public static int getSpot(int row, int col)
+	{
+		int spot = 0;
+		
+		if(row == 0 && col == 0)
+			spot = 0;
+		else if(row == 0 && col == 1)
+			spot = 1;
+		else if(row == 0 && col == 2)
+			spot = 2;
+		else if(row == 0 && col == 3)
+			spot = 3;
+		else if(row == 1 && col == 0)
+			spot = 4;
+		else if(row == 1 && col == 1)
+			spot = 5;
+		else if(row == 1 && col == 2)
+			spot = 6;
+		else if(row == 1 && col == 3)
+			spot = 7;
+		else if(row == 2 && col == 0)
+			spot = 8;
+		else if(row == 2 && col == 1)
+			spot = 9;
+		else if(row == 2 && col == 2)
+			spot = 10;
+		else if(row == 2 && col == 3)
+			spot = 11;
+		else if(row == 3 && col == 0)
+			spot = 12;
+		else if(row == 3 && col == 1)
+			spot = 13;
+		else if(row == 3 && col == 2)
+			spot = 14;
+		else if(row == 3 && col == 3)
+			spot = 15;
+		return spot;
 	}
 	
 	public static int getXSpot(int randomCol)
@@ -212,13 +253,13 @@ public class GameBoard
 		return SPACING + SPACING * randomRow + Tiles.WIDTH * randomRow;
 	}
 	
-	public int getRandomNumSpot()
+	public static int getRandomNumSpot()
 	{
 		int randomNum = (int)(Math.random() * 5 - 1);
 		return randomNum;
 	}
 	
-	public int getRandomNumTileNum()
+	public static int getRandomNumTileNum()
 	{
 		int random;
 		int tile = 2;
