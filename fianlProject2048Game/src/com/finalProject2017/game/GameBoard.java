@@ -15,7 +15,7 @@ public class GameBoard
 	public static final int BOARD_HEIGHT = (COLS + 1) * SPACING + COLS * Tiles.WIDTH;
 	public static final int BOARD_WIDTH = (ROWS + 1) * SPACING + ROWS * Tiles.WIDTH;
 	
-	private BufferedImage gameBoard;
+	private static BufferedImage gameBoard;
 	private BufferedImage finalBoard;
 	
 	private int x;
@@ -33,6 +33,16 @@ public class GameBoard
 		
 		gameBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		finalBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
+		
+		///
+		tileNums[0][0] = 2;
+		tileNums[0][1] = 2;
+		tileNums[1][1] = 2;
+		tileNums[1][2] = 2;
+		tileNums[0][3] = 2;
+		tileNums[1][3] = 2;
+		///
+		
 		createBoardImage();
 		//putRandomTile();
 		//putRandomTile();
@@ -52,7 +62,6 @@ public class GameBoard
 		g.setColor(new Color(50, 50, 50));
 		g.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 		
-		
 		g.setColor(Color.BLUE);
 		
 		for(int row = 0; row < ROWS; row++)			// Creates all the spaces for the tiles
@@ -67,7 +76,7 @@ public class GameBoard
 		createStartingGrid(g);
 	}
 	
-	public void createStartingGrid(Graphics2D g)
+	public static void createStartingGrid(Graphics2D g)
 	{
 		int listSpot = 0;
 		
@@ -77,15 +86,6 @@ public class GameBoard
 			{
 				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
 				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
-				
-				///
-				tileNums[0][0] = 2;
-				tileNums[0][1] = 2;
-				tileNums[1][1] = 2;
-				tileNums[1][2] = 2;
-				tileNums[0][3] = 2;
-				tileNums[1][3] = 2;
-				///
 				
 				tileGrid.add(new Tiles(tileNums[row][col], x, y));
 				tileGrid.get(listSpot).render(g);
@@ -105,7 +105,7 @@ public class GameBoard
 	}
 	
 	
-	public static void moveTilesLeft(Graphics2D g)
+	public static void moveTilesLeft()
 	{
 		int listSpot = 0;
 		
@@ -113,8 +113,6 @@ public class GameBoard
 		{
 			for(int col = 0; col < COLS; col++)
 			{
-				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
-				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
 				//System.out.println("(" + row + ", " + col + ")");
 				if(col > 0)
 				{
@@ -122,12 +120,18 @@ public class GameBoard
 					{
 						if(tileNums[row][col] == tileNums[row][col - 1]) // Checks if the numbers are equal
 						{
+							System.out.print(row + " " + col);
+							System.out.println("same");
 							
+							tileNums[row][col - 1] += tileNums[row][col]; // Adds numbers together
+							tileNums[row][col] = 0; // Sets added number to nothing
 						}
 						
 					}
 					if(!spotsTaken[row][col - 1])
 					{
+						System.out.print(row + " " + col + ", ");
+						System.out.println("not");
 						switch(row)
 						{
 							case 0:
@@ -150,7 +154,6 @@ public class GameBoard
 						}
 					}
 				}
-				//System.out.print(tileNums[col][row] + " ,");
 				listSpot++;
 			}
 		}
@@ -232,5 +235,5 @@ public class GameBoard
 				}
 			}
 		}
-	}	
+	}
 }
