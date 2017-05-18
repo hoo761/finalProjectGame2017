@@ -11,14 +11,14 @@ public class Tiles
 	public static final int WIDTH = 125;
 	public static final int HEIGHT = 125;
 	
-	public int value;
 	private Color tileColor;
 	private Color textColor;
 	private Font font;
 	private Font trippleDigit;
 	private Font quadDigit;
-	public int x;
-	public int y;
+	private int value;
+	private int x;
+	private int y;
 	private BufferedImage tileImage;
 	
 	
@@ -134,8 +134,36 @@ public class Tiles
 			g.drawString("" + value, WIDTH / 3, HEIGHT / 2 + 25);
 		}
 		
-		
-		
 		g.dispose();
+	}
+	
+	public int getX()
+	{
+		return x;
+	}
+	
+	public int getY()
+	{
+		return y;
+	}
+	
+	public int getValue()
+	{
+		return x;
+	}
+	
+	public void setY(int y)
+	{
+		this.y = y;
+	}
+	
+	public void setX(int x)
+	{
+		this.x = x;
+	}
+	
+	public void setValue(int value)
+	{
+		this.value = x;
 	}
 }

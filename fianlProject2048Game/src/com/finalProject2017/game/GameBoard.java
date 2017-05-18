@@ -29,6 +29,8 @@ public class GameBoard
 	private int y_Score;
 	private Font scoreFont;
 	
+	private static boolean shouldRender;
+	private static boolean gridRefreshed;
 	
 	public static boolean spotsTaken[][] = new boolean[4][4];
 	public static int tileNums[][] = new int [4][4];
@@ -42,8 +44,6 @@ public class GameBoard
 		x_Score = 477;
 		y_Score = 150;
 		scoreFont = new Font("", Font.BOLD, 36);
-		
-		
 		
 		gameBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		
@@ -64,7 +64,7 @@ public class GameBoard
 		g.setColor(new Color(50, 50, 50));
 		g.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 		
-		g.setColor(Color.BLUE);
+		g.setColor(Color.CYAN);
 		
 		for(int row = 0; row < ROWS; row++)			// Creates all the spaces for the tiles
 		{
@@ -96,6 +96,31 @@ public class GameBoard
 		putRandomTile();
 		putRandomTile();
 		setTakenSpots();
+		shouldRender = true;
+		gridRefreshed = true;
+	}
+	
+	public static void refreshGrid()
+	{
+		//Graphics2D g = (Graphics2D) gameBoard.getGraphics();
+		int listSpot = 0;
+		gridRefreshed = false;
+		shouldRender = false;
+		tileGrid.clear();
+		
+		for(int row = 0; row < ROWS; row++)			// Adds all the tiles to the game board
+		{
+			for(int col = 0; col < COLS; col ++)
+			{
+				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
+				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
+				
+				tileGrid.add(new Tiles(tileNums[row][col], x, y));
+				listSpot++;
+			}
+		}
+		shouldRender = true;
+		gridRefreshed = true;
 	}
 	
 	public void render(Graphics2D g)
@@ -104,16 +129,19 @@ public class GameBoard
 		Graphics2D g2d = (Graphics2D) finalBoard.getGraphics();
 		g2d.drawImage(gameBoard, 0, 0, null);
 		
-		int spot = 0;
-		for (int row = 0; row < ROWS; row++) 
+		if(shouldRender)
 		{
-			for (int col = 0; col < COLS; col++) 
+			int spot = 0;
+			for (int row = 0; row < ROWS; row++) 
 			{
-				tileGrid.get(spot).render(g2d);
-				spot++;
+				for (int col = 0; col < COLS; col++) 
+				{
+					tileGrid.get(spot).render(g2d);
+					System.out.println(spot);
+					spot++;
+				}
 			}
 		}
-		
 		g.drawImage(finalBoard, x, y, null);
 		g.setFont(scoreFont);
 		g.drawString("" + score, x_Score, y_Score);
@@ -174,15 +202,16 @@ public class GameBoard
 				
 			}*/
 		//}
-		System.out.println();
-		tileGrid.get(0).x += 10;
+		//tileGrid.get(0).setX(tileGrid.get(0).getX() + 10);
+		refreshGrid();
+		//tileGrid.get(0).setValue(4);
 	}
 	
 	public static void setValues(int value, int x, int y, int spot)
 	{
-		tileGrid.get(spot).value = value;
-		tileGrid.get(spot).x = x;
-		tileGrid.get(spot).y = y;
+		tileGrid.get(spot).setValue(value);
+		tileGrid.get(spot).setX(x);
+		tileGrid.get(spot).setY(y);
 	}
 	
 	public static void putRandomTile()
@@ -199,7 +228,7 @@ public class GameBoard
 			tileNums[randomRow][randomCol] = getRandomNumTileNum();
 			setTakenSpots();
 			
-			tileGrid.get(getSpot(randomRow, randomCol)).value = tileNums[randomRow][randomCol];
+			//tileGrid.get(getSpot(randomRow, randomCol)).setValue(tileNums[randomRow][randomCol]);
 		}
 		
 	}
@@ -273,6 +302,11 @@ public class GameBoard
 				break;
 		}
 		return tile;
+	}
+	
+	public static boolean isGridRefreshed()
+	{
+		return gridRefreshed;
 	}
 	
 	public static void setTakenSpots()

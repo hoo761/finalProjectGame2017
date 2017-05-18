@@ -123,7 +123,8 @@ public class Game extends JPanel implements KeyListener, Runnable
 		
 		if(keyCode == KeyEvent.VK_LEFT)
 		{
-			GameBoard.moveTilesLeft();
+			if(GameBoard.isGridRefreshed())
+				GameBoard.moveTilesLeft();
 		}	
 		if(keyCode == KeyEvent.VK_UP)
 		{
