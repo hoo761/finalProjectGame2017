@@ -98,7 +98,16 @@ public class Game extends JPanel implements KeyListener, Runnable
 			
 			if(shouldRender)
 				render();
-		}	
+		}
+		try 
+        {
+            Thread.sleep(1000);     
+        }
+        catch (InterruptedException e) 
+        {
+            System.out.println("Interrupted.");
+            render();
+        }
 	}
 	
 	

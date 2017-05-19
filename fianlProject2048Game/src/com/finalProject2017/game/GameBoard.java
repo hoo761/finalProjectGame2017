@@ -106,8 +106,6 @@ public class GameBoard
 				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
 				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
 				
-				System.out.println(tileNums[row][col] + ": " + "(" + row + ", " + col + ")" );
-				
 				tileGrid.add(new Tiles(tileNums[row][col], x, y));
 				listSpot++;
 			}
@@ -129,6 +127,7 @@ public class GameBoard
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 	
 	public void render(Graphics2D g)
@@ -173,6 +172,7 @@ public class GameBoard
 						{
 							tileNums[row][col - 1] += tileNums[row][col]; // Adds numbers together
 							tileNums[row][col] = 0; // Sets added number to nothing
+							setTakenSpots();
 						}
 						
 					}
@@ -252,6 +252,7 @@ public class GameBoard
 						{
 							tileNums[row][col + 1] += tileNums[row][col]; // Adds numbers together
 							tileNums[row][col] = 0; // Sets added number to nothing
+							setTakenSpots();
 						}
 						
 					}
@@ -330,86 +331,74 @@ public class GameBoard
 	
 	public static void moveTilesUp()
 	{
-		
-		for(int row = 0; row < ROWS; row++)
+		for(int col = 0; col < COLS; col++)
 		{
-			for(int col = 0; col < COLS; col++)
+			for(int row = 0; row < ROWS; row++)
 			{
-				if(col < 3 && tileNums[row][col] > 0)
+				if(row > 0 && tileNums[row][col] > 0)
 				{
-					if(spotsTaken[row][col + 1]) // If the tile to the Right is tanken
+					if(spotsTaken[row - 1][col]) // If the tile to the left is tanken
 					{
-						if(tileNums[row][col] == tileNums[row][col + 1]) // Checks if the numbers are equal
+						if(tileNums[row][col] == tileNums[row - 1][col]) // Checks if the numbers are equal
 						{
-							tileNums[row][col + 1] += tileNums[row][col]; // Adds numbers together
+							tileNums[row - 1][col] += tileNums[row][col]; // Adds numbers together
 							tileNums[row][col] = 0; // Sets added number to nothing
+							setTakenSpots();
 						}
 						
 					}
-					else if(!spotsTaken[row][col + 1] && col == 2 && tileNums[row][col + 1] == 0) // col 2
+					if(!spotsTaken[row - 1][col] && row == 1 && tileNums[row - 1][col] == 0) // col 1
 					{
-						tileNums[row][col + 1] = tileNums[row][col];
+						tileNums[row - 1][col] = tileNums[row][col];
 						tileNums[row][col] = 0;
 						setTakenSpots();
 					}
-					else if(!spotsTaken[row][col + 1] && col == 1 && tileNums[row][col + 1] == 0) // col 1
+					else if(!spotsTaken[row - 1][col] && row == 2 && tileNums[row - 1][col] == 0) // col 2
 					{
-						tileNums[row][col + 1] = tileNums[row][col];
+						tileNums[row - 1][col] = tileNums[row][col];
 						tileNums[row][col] = 0;
 						setTakenSpots();
-						if(!spotsTaken[row][col + 2] && tileNums[row][col + 2] == 0)
+						if(!spotsTaken[row - 2][col] && tileNums[row - 2][col] == 0)
 						{
-							tileNums[row][col + 2] = tileNums[row][col + 1];
-							tileNums[row][col + 1] = 0;
+							tileNums[row - 2][col] = tileNums[row - 1][col];
+							tileNums[row -1][col] = 0;
 							setTakenSpots();
 						}
-						else if(spotsTaken[row][col + 2] && tileNums[row][col + 2] == tileNums[row][col + 1])
+						else if(spotsTaken[row - 2][col] && tileNums[row - 2][col] == tileNums[row - 1][col])
 						{
-							tileNums[row][col + 2] += tileNums[row][col + 1];
-							tileNums[row][col + 1] = 0;
+							tileNums[row - 2][col] += tileNums[row - 1][col];
+							tileNums[row - 1][col] = 0;
 							setTakenSpots();	
 						}
 					}
-					else if(!spotsTaken[row][col + 1] && col == 0 && tileNums[row][col + 1] == 0) // col 0
+					else if(!spotsTaken[row - 1][col] && row == 3 && tileNums[row - 1][col] == 0) // col 3
 					{
-						tileNums[row][col + 1] = tileNums[row][col];
+						tileNums[row - 1][col] = tileNums[row][col];
 						tileNums[row][col] = 0;
 						setTakenSpots();
-						if(!spotsTaken[row][col + 2] && tileNums[row][col + 2] == 0)
+						if(!spotsTaken[row - 2][col] && tileNums[row - 2][col] == 0)
 						{
-							tileNums[row][col + 2] = tileNums[row][col + 1];
-							tileNums[row][col + 1] = 0;
+							tileNums[row - 2][col] = tileNums[row - 1][col];
+							tileNums[row - 1][col] = 0;
 							setTakenSpots();
-							if(!spotsTaken[row][col + 3] && tileNums[row][col + 3] == 0)
+							if(!spotsTaken[row - 3][col] && tileNums[row - 3][col] == 0)
 							{
-								tileNums[row][col + 3] = tileNums[row][col + 2];
-								tileNums[row][col + 2] = 0;
+								tileNums[row - 3][col] = tileNums[row - 2][col];
+								tileNums[row - 2][col] = 0;
 								setTakenSpots();
 							}
-							else if(spotsTaken[row][col + 3] && tileNums[row][col + 3] == tileNums[row][col + 2])
+							else if(spotsTaken[row - 3][col] && tileNums[row - 3][col] == tileNums[row - 2][col])
 							{
-								tileNums[row][col + 3] += tileNums[row][col + 2];
-								tileNums[row][col + 2] = 0;
+								tileNums[row - 3][col] += tileNums[row - 2][col];
+								tileNums[row - 2][col] = 0;
 								setTakenSpots();
 							}
 						}
-						else if(spotsTaken[row][col + 2] && tileNums[row][col + 2] == tileNums[row][col + 1])
+						else if(spotsTaken[row - 2][col] && tileNums[row - 2][col] == tileNums[row - 1][col])
 						{
-							tileNums[row][col + 2] += tileNums[row][col + 1];
-							tileNums[row][col + 1] = 0;
+							tileNums[row - 2][col] += tileNums[row - 1][col];
+							tileNums[row - 1][col] = 0;
 							setTakenSpots();
-							if(!spotsTaken[row][col + 3] && tileNums[row][col + 3] == 0)
-							{
-								tileNums[row][col + 3] = tileNums[row][col + 2];
-								tileNums[row][col + 2] = 0;
-								setTakenSpots();
-							}
-							else if(spotsTaken[row][col + 3] && tileNums[row][col + 3] == tileNums[row][col + 2])
-							{
-								tileNums[row][col + 3] += tileNums[row][col + 2];
-								tileNums[row][col + 2] = 0;
-								setTakenSpots();
-							}
 						}
 					}
 				}			
