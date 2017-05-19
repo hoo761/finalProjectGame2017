@@ -153,6 +153,3 @@ public class Game extends JPanel implements KeyListener, Runnable
 		score = 0;
 	}
 }
-
-
-// http://stackoverflow.com/questions/10966821/appropriate-way-to-draw-to-a-jpanel-for-2d-game-development

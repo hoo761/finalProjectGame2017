@@ -98,6 +98,7 @@ public class GameBoard
 		setTakenSpots();
 		shouldRender = true;
 		gridRefreshed = true;
+		refreshGrid();
 	}
 	
 	public static void refreshGrid()
@@ -107,11 +108,12 @@ public class GameBoard
 		gridRefreshed = false;
 		shouldRender = false;
 		tileGrid.clear();
-		
+		System.out.println("Start");
 		for(int row = 0; row < ROWS; row++)			// Adds all the tiles to the game board
 		{
 			for(int col = 0; col < COLS; col ++)
 			{
+				System.out.println(listSpot);
 				int x = SPACING + SPACING * col + Tiles.WIDTH * col;
 				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
 				
@@ -119,8 +121,13 @@ public class GameBoard
 				listSpot++;
 			}
 		}
-		shouldRender = true;
-		gridRefreshed = true;
+		System.out.println("End");
+			if(tileGrid.size() == 16)
+			{
+				shouldRender = true;
+				gridRefreshed = true;
+			}
+			System.out.println("Refreshed");
 	}
 	
 	public void render(Graphics2D g)
@@ -130,7 +137,9 @@ public class GameBoard
 		g2d.drawImage(gameBoard, 0, 0, null);
 		
 		if(shouldRender)
-		{
+		{	
+			System.out.println("Start Render");
+			gridRefreshed = false;
 			int spot = 0;
 			for (int row = 0; row < ROWS; row++) 
 			{
@@ -141,6 +150,8 @@ public class GameBoard
 					spot++;
 				}
 			}
+			gridRefreshed = true;
+			System.out.println("render Finished");
 		}
 		g.drawImage(finalBoard, x, y, null);
 		g.setFont(scoreFont);
@@ -151,8 +162,7 @@ public class GameBoard
 	
 	public static void moveTilesLeft()
 	{
-		int listSpot = 0;
-		/*
+		
 		for(int row = 0; row < ROWS; row++)
 		{
 			for(int col = 0; col < COLS; col++)
@@ -164,8 +174,8 @@ public class GameBoard
 					{
 						if(tileNums[row][col] == tileNums[row][col - 1]) // Checks if the numbers are equal
 						{
-							System.out.print(row + " " + col);
-							System.out.println("same");
+							//System.out.print(row + " " + col);
+							//System.out.println("same");
 							
 							tileNums[row][col - 1] += tileNums[row][col]; // Adds numbers together
 							tileNums[row][col] = 0; // Sets added number to nothing
@@ -197,12 +207,11 @@ public class GameBoard
 							}
 						}
 					}
-				}
-				listSpot++;
-				
-			}*/
-		//}
+				}			
+			}
+		}
 		//tileGrid.get(0).setX(tileGrid.get(0).getX() + 10);
+		//putRandomTile();
 		refreshGrid();
 		//tileGrid.get(0).setValue(4);
 	}
