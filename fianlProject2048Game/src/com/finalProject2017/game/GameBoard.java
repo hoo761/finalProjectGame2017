@@ -24,7 +24,7 @@ public class GameBoard
 		
 	private int x;
 	private int y;
-	private int score;
+	private static int score;
 	private int x_Score;
 	private int y_Score;
 	private Font scoreFont;
@@ -44,6 +44,7 @@ public class GameBoard
 		x_Score = 477;
 		y_Score = 150;
 		scoreFont = new Font("", Font.BOLD, 36);
+		
 		
 		gameBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		
@@ -172,6 +173,7 @@ public class GameBoard
 						{
 							tileNums[row][col - 1] += tileNums[row][col]; // Adds numbers together
 							tileNums[row][col] = 0; // Sets added number to nothing
+							score += tileNums[row][col - 1];
 							setTakenSpots();
 						}
 						
@@ -197,6 +199,7 @@ public class GameBoard
 						{
 							tileNums[row][col - 2] += tileNums[row][col - 1];
 							tileNums[row][col - 1] = 0;
+							score += tileNums[row][col - 2];
 							setTakenSpots();	
 						}
 					}
@@ -220,6 +223,7 @@ public class GameBoard
 							{
 								tileNums[row][col - 3] += tileNums[row][col - 2];
 								tileNums[row][col - 2] = 0;
+								score += tileNums[row][col - 3];
 								setTakenSpots();
 							}
 						}
@@ -227,6 +231,7 @@ public class GameBoard
 						{
 							tileNums[row][col - 2] += tileNums[row][col - 1];
 							tileNums[row][col - 1] = 0;
+							score += tileNums[row][col - 2];
 							setTakenSpots();
 						}
 					}
@@ -252,6 +257,7 @@ public class GameBoard
 						{
 							tileNums[row][col + 1] += tileNums[row][col]; // Adds numbers together
 							tileNums[row][col] = 0; // Sets added number to nothing
+							score += tileNums[row][col + 1];
 							setTakenSpots();
 						}
 						
@@ -277,6 +283,7 @@ public class GameBoard
 						{
 							tileNums[row][col + 2] += tileNums[row][col + 1];
 							tileNums[row][col + 1] = 0;
+							score += tileNums[row][col + 2];
 							setTakenSpots();	
 						}
 					}
@@ -300,6 +307,7 @@ public class GameBoard
 							{
 								tileNums[row][col + 3] += tileNums[row][col + 2];
 								tileNums[row][col + 2] = 0;
+								score += tileNums[row][col + 3];
 								setTakenSpots();
 							}
 						}
@@ -307,6 +315,7 @@ public class GameBoard
 						{
 							tileNums[row][col + 2] += tileNums[row][col + 1];
 							tileNums[row][col + 1] = 0;
+							score += tileNums[row][col + 2];
 							setTakenSpots();
 							if(!spotsTaken[row][col + 3] && tileNums[row][col + 3] == 0)
 							{
@@ -318,6 +327,7 @@ public class GameBoard
 							{
 								tileNums[row][col + 3] += tileNums[row][col + 2];
 								tileNums[row][col + 2] = 0;
+								score += tileNums[row][col + 3];
 								setTakenSpots();
 							}
 						}
@@ -343,6 +353,7 @@ public class GameBoard
 						{
 							tileNums[row - 1][col] += tileNums[row][col]; // Adds numbers together
 							tileNums[row][col] = 0; // Sets added number to nothing
+							score += tileNums[row - 1][col];
 							setTakenSpots();
 						}
 						
@@ -368,6 +379,7 @@ public class GameBoard
 						{
 							tileNums[row - 2][col] += tileNums[row - 1][col];
 							tileNums[row - 1][col] = 0;
+							score += tileNums[row - 2][col];
 							setTakenSpots();	
 						}
 					}
@@ -391,6 +403,7 @@ public class GameBoard
 							{
 								tileNums[row - 3][col] += tileNums[row - 2][col];
 								tileNums[row - 2][col] = 0;
+								score += tileNums[row - 3][col];
 								setTakenSpots();
 							}
 						}
@@ -398,6 +411,7 @@ public class GameBoard
 						{
 							tileNums[row - 2][col] += tileNums[row - 1][col];
 							tileNums[row - 1][col] = 0;
+							score += tileNums[row - 2][col];
 							setTakenSpots();
 						}
 					}
@@ -422,6 +436,7 @@ public class GameBoard
 						{
 							tileNums[row + 1][col] += tileNums[row][col]; // Adds numbers together
 							tileNums[row][col] = 0; // Sets added number to nothing
+							score += tileNums[row + 1][col];
 							setTakenSpots();
 						}
 						
@@ -447,6 +462,7 @@ public class GameBoard
 						{
 							tileNums[row + 2][col] += tileNums[row + 1][col];
 							tileNums[row + 1][col] = 0;
+							score += tileNums[row + 2][col];
 							setTakenSpots();	
 						}
 					}
@@ -470,6 +486,7 @@ public class GameBoard
 							{
 								tileNums[row + 3][col] += tileNums[row + 2][col];
 								tileNums[row + 2][col] = 0;
+								score += tileNums[row + 3][col];
 								setTakenSpots();
 							}
 						}
@@ -477,6 +494,7 @@ public class GameBoard
 						{
 							tileNums[row + 2][col] += tileNums[row + 1][col];
 							tileNums[row + 1][col] = 0;
+							score += tileNums[row + 2][col];
 							setTakenSpots();
 						}
 					}
