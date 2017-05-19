@@ -36,7 +36,6 @@ public class Game extends JPanel implements KeyListener, Runnable
 	private Font gameFont;
 	private Font HS_font;
 	private Font messageFont;
-	private int score;
 	
 	public Game()
 	{
@@ -168,18 +167,12 @@ public class Game extends JPanel implements KeyListener, Runnable
 		
 		if(keyCode == KeyEvent.VK_R)
 		{
-			restart();
+			board.restart();
 		}
 	}
 
 	public void keyTyped(KeyEvent e) 
 	{
 
-	}
-	
-	
-	public void restart()
-	{
-		score = 0;
 	}
 }
