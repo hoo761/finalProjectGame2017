@@ -119,27 +119,40 @@ public class Game extends JPanel implements KeyListener, Runnable
 
 	public void keyPressed(KeyEvent e) 
 	{
+		
+	}
+
+	public void keyReleased(KeyEvent e) 
+	{
 		int keyCode = e.getKeyCode();
 		
 		if(keyCode == KeyEvent.VK_LEFT)
 		{
 			if(GameBoard.isGridRefreshed())
+			{
 				GameBoard.moveTilesLeft();
+			}
 		}	
+		if(keyCode == KeyEvent.VK_RIGHT)
+		{
+			if(GameBoard.isGridRefreshed())
+			{
+				GameBoard.moveTilesRight();
+			}
+		}
+		
 		if(keyCode == KeyEvent.VK_UP)
 		{
-			
+			if(GameBoard.isGridRefreshed())
+			{
+				GameBoard.moveTilesUp();
+			}
 		}
 		
 		if(keyCode == KeyEvent.VK_R)
 		{
 			restart();
 		}
-	}
-
-	public void keyReleased(KeyEvent e) 
-	{
-		
 	}
 
 	public void keyTyped(KeyEvent e) 
