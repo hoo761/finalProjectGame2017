@@ -158,6 +158,14 @@ public class Game extends JPanel implements KeyListener, Runnable
 			}
 		}
 		
+		if(keyCode == KeyEvent.VK_DOWN)
+		{
+			if(GameBoard.isGridRefreshed())
+			{
+				GameBoard.moveTilesDown();
+			}
+		}
+		
 		if(keyCode == KeyEvent.VK_R)
 		{
 			restart();

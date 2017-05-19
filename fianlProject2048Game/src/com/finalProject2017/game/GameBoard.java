@@ -408,6 +408,85 @@ public class GameBoard
 		refreshGrid();
 	}
 	
+	public static void moveTilesDown()
+	{
+		for(int col = COLS - 1; col > -1; col--)
+		{
+			for(int row = ROWS - 1; row > -1; row--)
+			{
+				if(row < 3 && tileNums[row][col] > 0)
+				{
+					if(spotsTaken[row + 1][col]) // If the tile to the left is tanken
+					{
+						if(tileNums[row][col] == tileNums[row + 1][col]) // Checks if the numbers are equal
+						{
+							tileNums[row + 1][col] += tileNums[row][col]; // Adds numbers together
+							tileNums[row][col] = 0; // Sets added number to nothing
+							setTakenSpots();
+						}
+						
+					}
+					if(!spotsTaken[row + 1][col] && row == 2 && tileNums[row + 1][col] == 0) // col 1
+					{
+						tileNums[row + 1][col] = tileNums[row][col];
+						tileNums[row][col] = 0;
+						setTakenSpots();
+					}
+					else if(!spotsTaken[row + 1][col] && row == 1 && tileNums[row + 1][col] == 0) // col 2
+					{
+						tileNums[row + 1][col] = tileNums[row][col];
+						tileNums[row][col] = 0;
+						setTakenSpots();
+						if(!spotsTaken[row + 2][col] && tileNums[row + 2][col] == 0)
+						{
+							tileNums[row + 2][col] = tileNums[row + 1][col];
+							tileNums[row +1][col] = 0;
+							setTakenSpots();
+						}
+						else if(spotsTaken[row + 2][col] && tileNums[row + 2][col] == tileNums[row + 1][col])
+						{
+							tileNums[row + 2][col] += tileNums[row + 1][col];
+							tileNums[row + 1][col] = 0;
+							setTakenSpots();	
+						}
+					}
+					else if(!spotsTaken[row + 1][col] && row == 0 && tileNums[row + 1][col] == 0) // col 3
+					{
+						tileNums[row + 1][col] = tileNums[row][col];
+						tileNums[row][col] = 0;
+						setTakenSpots();
+						if(!spotsTaken[row + 2][col] && tileNums[row + 2][col] == 0)
+						{
+							tileNums[row + 2][col] = tileNums[row + 1][col];
+							tileNums[row + 1][col] = 0;
+							setTakenSpots();
+							if(!spotsTaken[row + 3][col] && tileNums[row + 3][col] == 0)
+							{
+								tileNums[row + 3][col] = tileNums[row + 2][col];
+								tileNums[row + 2][col] = 0;
+								setTakenSpots();
+							}
+							else if(spotsTaken[row + 3][col] && tileNums[row + 3][col] == tileNums[row + 2][col])
+							{
+								tileNums[row + 3][col] += tileNums[row + 2][col];
+								tileNums[row + 2][col] = 0;
+								setTakenSpots();
+							}
+						}
+						else if(spotsTaken[row + 2][col] && tileNums[row + 2][col] == tileNums[row + 1][col])
+						{
+							tileNums[row + 2][col] += tileNums[row + 1][col];
+							tileNums[row + 1][col] = 0;
+							setTakenSpots();
+						}
+					}
+				}			
+			}
+		}
+		putRandomTile();
+		refreshGrid();
+	}
+	
 	public static void setValues(int value, int x, int y, int spot)
 	{
 		tileGrid.get(spot).setValue(value);
