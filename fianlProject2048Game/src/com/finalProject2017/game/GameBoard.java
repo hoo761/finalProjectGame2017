@@ -136,8 +136,8 @@ public class GameBoard
 		BufferedImage finalBoard = new BufferedImage(BOARD_WIDTH, BOARD_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = (Graphics2D) finalBoard.getGraphics();
 		g2d.drawImage(gameBoard, 0, 0, null);
-		int spot = 0;
-		if(shouldRender)
+		int spot;
+		if(shouldRender && tileNums.length <= 15)
 		{	
 			gridRefreshed = false;
 			spot = 0;
@@ -522,7 +522,7 @@ public class GameBoard
 	{
 		score = 0;
 		shouldRender = false;
-		tileGrid.clear();
+		//tileGrid.clear();
 		for(int row = 0; row < ROWS; row++)
 		{
 			for(int col = 0; col < COLS; col++)

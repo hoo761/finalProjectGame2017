@@ -72,6 +72,9 @@ public class Game extends JPanel implements KeyListener, Runnable
 		g.setFont(messageFont);
 		g.drawString("PRESS 'R' TO RESTART THE GAME", 30, 250);
 		
+		g.setColor(Color.RED);
+		g.drawString("Created By: JACOB HOUSSIAN and IGOR DERKE", 30, 30);
+		
 		
 		board.render(g);
 		g.dispose();
