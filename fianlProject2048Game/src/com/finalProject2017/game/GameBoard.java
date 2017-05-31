@@ -18,6 +18,7 @@ public class GameBoard
 	
 	public static boolean spotsTaken[][]    = new boolean[4][4];
 	public static int tileNums[][]          = new int [4][4];
+	public static int prevNums[][] = new int[4][4];
 	public static ArrayList<Tiles> tileGrid = new ArrayList<Tiles>();
 	
 	private static BufferedImage gameBoard;
@@ -97,7 +98,6 @@ public class GameBoard
 	
 	public static void refreshGrid()
 	{
-		int listSpot = 0;
 		gridRefreshed = false;
 		shouldRender = false;
 		tileGrid.clear();
@@ -109,7 +109,6 @@ public class GameBoard
 				int y = SPACING + SPACING * row + Tiles.HEIGHT * row;
 				
 				tileGrid.add(new Tiles(tileNums[row][col], x, y));
-				listSpot++;
 			}
 		}
 		
@@ -120,7 +119,7 @@ public class GameBoard
 		}
 		setTakenSpots();
 		
-		
+		System.out.println("2048");
 		for(int row = 0; row < ROWS; row++)			// For testing
 		{
 			for(int col = 0; col < COLS; col ++)
@@ -161,7 +160,7 @@ public class GameBoard
 	
 	public static void moveTilesLeft()
 	{
-		
+		setPrevious(prevNums);
 		for(int row = 0; row < ROWS; row++)
 		{
 			for(int col = 0; col < COLS; col++)
@@ -239,12 +238,15 @@ public class GameBoard
 				}			
 			}
 		}
-		putRandomTile();
+		if(canPlaceRandom())
+			putRandomTile();
+		
 		refreshGrid();
 	}
 	
 	public static void moveTilesRight()
 	{
+		setPrevious(prevNums);
 		
 		for(int row = ROWS - 1; row > -1; row--)
 		{
@@ -336,12 +338,16 @@ public class GameBoard
 				}			
 			}
 		}
-		putRandomTile();
+		if(canPlaceRandom())
+			putRandomTile();
+		
 		refreshGrid();
 	}
 	
 	public static void moveTilesUp()
 	{
+		setPrevious(prevNums);
+		
 		for(int col = 0; col < COLS; col++)
 		{
 			for(int row = 0; row < ROWS; row++)
@@ -419,12 +425,16 @@ public class GameBoard
 				}			
 			}
 		}
-		putRandomTile();
+		if(canPlaceRandom())
+			putRandomTile();
+		
 		refreshGrid();
 	}
 	
 	public static void moveTilesDown()
 	{
+		setPrevious(prevNums);
+		
 		for(int col = COLS - 1; col > -1; col--)
 		{
 			for(int row = ROWS - 1; row > -1; row--)
@@ -502,7 +512,9 @@ public class GameBoard
 				}			
 			}
 		}
-		putRandomTile();
+		if(canPlaceRandom())
+			putRandomTile();
+		
 		refreshGrid();
 	}
 	
@@ -516,6 +528,7 @@ public class GameBoard
 			for(int col = 0; col < COLS; col++)
 			{
 				tileNums[row][col] = 0;
+				setTakenSpots();
 			}
 		}
 		setTakenSpots();
@@ -576,6 +589,39 @@ public class GameBoard
 	public static boolean isGridRefreshed()
 	{
 		return gridRefreshed;
+	}
+	
+	public static void setPrevious(int prevNums[][])
+	{
+		for(int row = 0; row < ROWS; row++)			// Adds all the tiles to the game board
+		{
+			for(int col = 0; col < COLS; col ++)
+			{
+				prevNums[row][col] = tileNums[row][col];
+			}
+		}
+	}
+	
+	public static boolean canPlaceRandom()
+	{
+		boolean same;
+		int spots = 0;
+		
+		for(int row = 0; row < ROWS; row++)			// Adds all the tiles to the game board
+		{
+			for(int col = 0; col < COLS; col ++)
+			{
+				if(prevNums[row][col] == tileNums[row][col])
+					spots++;
+			}
+		}
+		
+		if(spots == 16)
+			same = false;
+		else
+			same = true;
+		
+		return same;
 	}
 	
 	public static void setTakenSpots()

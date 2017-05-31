@@ -99,6 +99,16 @@ public class Tiles
 			tileColor = new Color(255,10,10);
 			textColor = Color.BLACK;
 		}	
+		else if(value == 4096)
+		{
+			tileColor = Color.CYAN;
+			textColor = Color.PINK;
+		}
+		else if(value == 4096 + 4096)
+		{
+			tileColor = Color.BLACK;
+			textColor = Color.PINK;
+		}
 		else
 		{
 			tileColor = new Color(204,204,204);
